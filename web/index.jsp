@@ -93,6 +93,23 @@
         cursor: pointer;
       }
     </style>
+    <script language="JavaScript">
+      function checkAgentPassword(agent,password){
+        if(agent.value ===""){
+          alert("请输入账号！");
+          agent.focus();
+          return false;
+        }
+        else if(agent.value ===""){
+          alert("请输入密码！");
+          password.focus();
+          return false;
+        }
+        else if(agent.value !=="" && password.value !==""){
+          return true;
+        }
+      }
+    </script>
   </head>
   <body>
   <div class="content">
@@ -102,7 +119,7 @@
           <div class="xm_login_card_tab">
             <div id="loginCard" class="xm_login_card_tab_item"></div>
           </div>
-          <form name="form1" method="post" action="">
+          <form name="form1" method="post" action="${pageContext.request.contextPath}/AgentLoginServlet" onsubmit="return checkAgentPassword(form1.agent,form1.password)">
             <table width="85%" border="0">
               <tr>
                 <td width="36%" height="50px"><label for="agent">账号：</label></td>
