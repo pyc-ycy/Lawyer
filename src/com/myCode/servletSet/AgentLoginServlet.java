@@ -37,33 +37,43 @@ public class AgentLoginServlet extends HttpServlet {
             e.printStackTrace();
         }
         if(conn != null){
-            String sql = "select * from agent where acount=?";
-            try{
-                PreparedStatement ps = conn.prepareStatement(sql);
-                ps.setString(1,account);
-                ResultSet rs;
-                rs = ps.executeQuery();
-                if(rs != null){
-                    if(pwd.equals(rs.getString("password"))){
-                        request.setAttribute("account", account);
-                        request.getRequestDispatcher("agentIndex.jsp").forward(request,response);
-                    } else {
-                        errorMsg = errorMsg+account + "密码与账户不匹配！pwd为："+pwd+",pwdTemp:"+pwdTemp;
-                        request.setAttribute("msg",errorMsg);
-                        request.getRequestDispatcher("error.jsp").forward(request,response);
-                    }
-                    rs.close();
-                }
-                else
+            String sql = "select * from agent";
+            try {
+                Statement stmt = conn.createStatement();
+                ResultSet rs = stmt.executeQuery(sql);
+                while(rs.next())
                 {
-                    errorMsg="结果集不存在！";
-                    request.setAttribute("msg",errorMsg);
-                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                    String s = rs.getString("acount");
+                    if(s.equals(account))
+                    {
+                        pwdTemp = rs.getString("password");
+                        break;
+                    }
+                    else
+                    {
+                        errorMsg="用户未注册！";
+                    }
                 }
-                ps.close();
+                rs.close();
+                stmt.close();
                 conn.close();
             }catch (SQLException e){
                 e.printStackTrace();
+            }
+            if(!pwdTemp.equals("")){
+                if(pwd.equals(pwdTemp)){
+                    request.setAttribute("account", account);
+                    request.getRequestDispatcher("agentIndex.jsp").forward(request,response);
+                } else {
+                    errorMsg = errorMsg+account + "密码与账户不匹配！pwd为："+pwd+",pwdTemp:"+pwdTemp;
+                    request.setAttribute("msg",errorMsg);
+                    request.getRequestDispatcher("error.jsp").forward(request,response);
+                }
+            }
+            else {
+                errorMsg = errorMsg+account + "密码与账户匹配失败！pwd为："+pwd+",pwdTemp:"+pwdTemp;
+                request.setAttribute("msg",errorMsg);
+                request.getRequestDispatcher("error.jsp").forward(request,response);
             }
         }
     }
