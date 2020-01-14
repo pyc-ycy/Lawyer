@@ -26,8 +26,13 @@
         <%=request.getAttribute("account")%>,欢迎访问彭友来律师事务所！！！！
     </h1>
 </center>
+<%
+    String name = request.getAttribute("account").toString();
+    session.setAttribute("username", name);
+%>
 <div class="b">
     <%@include file="copyright.jsp"%>
 </div>
+<p>当前用户为：<%=session.getAttribute("username")%></p>
 </body>
 </html>

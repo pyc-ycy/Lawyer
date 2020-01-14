@@ -15,6 +15,7 @@
     <h3>
         <%=request.getAttribute("msg")%>
     </h3>
+    <a href="index.jsp">返回登录页面</a>
 </center>
 </body>
 </html>

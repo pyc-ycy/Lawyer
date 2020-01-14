@@ -92,6 +92,9 @@
         text-align: center;
         cursor: pointer;
       }
+      p{
+        font-size: 26px;
+      }
     </style>
     <script language="JavaScript">
       function checkAgentPassword(agent,password){
@@ -130,11 +133,11 @@
                 <td width="36%" height="50px"><input name="password" id="password" type="text" style="width: 120px"></td>
               </tr>
               <tr>
-                <td>&nbsp;<input type="submit" name="submit" value="确认"></td>
-                <td><input type="button" value="注册"></td>
+                <td colspan="2">&nbsp;<input type="submit" width="50px" name="submit" value="确认"></td>
               </tr>
             </table>
           </form>
+          &nbsp;<input type="button" style="width: 50px" value="注册" onclick="window.location.href='UserLogin.jsp'">
         </div>
       </div>
       <div class="login_pictures">
@@ -142,7 +145,7 @@
           <img src="images/lawyer.jpg" width="700" height="493" alt="图片">
         </div>
         <div class="login_pictures_txt">
-          <p>这里是文本</p>
+          <p>法无授权不得为，<br>法无禁止不得罚。</p>
         </div>
       </div>
     </div>
