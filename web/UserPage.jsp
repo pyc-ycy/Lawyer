@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: 御承扬
-  Date: 2020/1/12
-  Time: 20:44
+  Date: 2020/1/15
+  Time: 21:24
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>普罗米修律师事务所</title>
-    <link rel="stylesheet" href="CSS/head.css" type="text/css"/>
+    <title>用户</title>
+    <link rel="stylesheet" href="CSS/head.css" type="text/css">
 </head>
 <body>
 <div id="home">
@@ -18,8 +18,8 @@
         </div>
         <div id="navigator">
             <ul id="navList">
-                <li class="target">
-                    <a class="target" href="agentIndex.jsp">普罗米修</a>
+                <li>
+                    <a href="agentIndex.jsp">普罗米修</a>
                 </li>
                 <li>
                     <a href="LawyerIntroduce.jsp">律师简介</a>
@@ -31,12 +31,16 @@
                     <a href="Consume.jsp">咨询</a>
                 </li>
                 <li>
-                    <a href="UserPage.jsp">用户</a>
+                    <a class="target" href="UserPage.jsp">用户</a>
                 </li>
             </ul>
         </div>
     </div>
+    <form method="post" action="${pageContext.request.contextPath}/SignOutServlet">
+        <input type="submit" value="退出登录">
+    </form>
 </div>
+<input type="button">
 <div class="b">
     <%@include file="copyright.jsp"%>
 </div>

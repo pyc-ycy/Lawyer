@@ -6,11 +6,14 @@ package com.myCode.servletSet;
 // Author:御承扬
 //E-mail:2923616405@qq.com
 
+import com.myCode.DB.DBConn;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.*;
 
@@ -22,20 +25,8 @@ public class AgentLoginServlet extends HttpServlet {
         String pwd = request.getParameter("password");
         String pwdTemp = "";
         String errorMsg = "";
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        String url = "jdbc:mysql://localhost:3306/lawyer?serverTimezone=GMT%2B8";
-        String username = "root";
-        String password = "root19537";
-        Connection conn = null;
-        try{
-            conn = DriverManager.getConnection(url,username,password);
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
+        DBConn dbConn = new DBConn();
+        Connection conn = dbConn.getConn();
         if(conn != null){
             String sql = "select * from agent";
             try {
@@ -61,6 +52,8 @@ public class AgentLoginServlet extends HttpServlet {
                         ps.setString(1,account);
                         ps.executeUpdate();
                         ps.close();
+                        HttpSession session = request.getSession();
+                        session.setAttribute("user", account);
                         request.setAttribute("account", account);
                         request.getRequestDispatcher("agentIndex.jsp").forward(request,response);
                     } else {
@@ -84,6 +77,6 @@ public class AgentLoginServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        doPost(request, response);
     }
 }

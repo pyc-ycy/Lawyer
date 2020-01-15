@@ -35,12 +35,11 @@
       }
       .login_pictures_picture {
         position: absolute;
-        left: 0;
+        left: 200px;
         right: 0;
         top: 0;
         height: 400px;
         _width: 100%;
-        background: url("/images/lawyer.jpg") no-repeat right center;
       }
       .login_pictures_txt {
         padding-top: 25px;
@@ -73,22 +72,22 @@
         position: relative;
         width: 100%;
         height: 100%;
+        background: url("images/lawyer.jpg");
       }
       .xm_login_card_tab {
         height: 50px;
         font-size: 0;
         border-bottom: 1px solid
         #a0b1c4;
-        background-color:
-                #f9fbfe;
+        background-color: #f9fbfe;
         border-radius: 6px 6px 0 0;
       }
       .xm_login_card_tab_item {
         float: left;
-        width: 50%;
-        font-size: 16px;
+        width: 100%;
+        font-size: 26px;
         line-height: 50px;
-        color: #999;
+        color: #e994a5;
         text-align: center;
         cursor: pointer;
       }
@@ -120,7 +119,7 @@
       <div id="loginAndSigh" class="xm_login_container login_container" style="width: 330px; height: 336px; visibility: visible;">
         <div class="xm_login_card">
           <div class="xm_login_card_tab">
-            <div id="loginCard" class="xm_login_card_tab_item"></div>
+            <div id="loginCard" class="xm_login_card_tab_item">登录与注册</div>
           </div>
           <form name="form1" method="post" action="${pageContext.request.contextPath}/AgentLoginServlet" onsubmit="return checkAgentPassword(form1.agent,form1.password)">
             <table width="85%" border="0">
@@ -134,15 +133,15 @@
               </tr>
               <tr>
                 <td colspan="2">&nbsp;<input type="submit" width="50px" name="submit" value="确认"></td>
+                <td><input type="button" style="width: 50px" value="注册" onclick="window.location.href='UserLogin.jsp'"></td>
               </tr>
             </table>
           </form>
-          &nbsp;<input type="button" style="width: 50px" value="注册" onclick="window.location.href='UserLogin.jsp'">
         </div>
       </div>
       <div class="login_pictures">
         <div class="login_pictures_picture">
-          <img src="images/lawyer.jpg" width="700" height="493" alt="图片">
+          <img src="images/indexLog.png" width="250" height="400" alt="图片">
         </div>
         <div class="login_pictures_txt">
           <p>法无授权不得为，<br>法无禁止不得罚。</p>

@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-    String copyright="&nbsp;All Copyright &copy;2020 彭友来律师事务所";
+    String copyright="&nbsp;All Copyright &copy;2020 普罗米修律师事务所";
 %>
 <table style="width: 778px; height: 61px; border: 0;" cellpadding="0" cellspacing="0">
     <tr>

@@ -5,6 +5,8 @@ package com.myCode.servletSet;//@Software: IntelliJ IDEA
 // Author:御承扬
 //E-mail:2923616405@qq.com
 
+import com.myCode.DB.DBConn;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,20 +27,8 @@ public class UserLoginServlet extends HttpServlet {
         String tel = request.getParameter("tel");
         String account = request.getParameter("account");
         String pwd = request.getParameter("password");
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        String url = "jdbc:mysql://localhost:3306/lawyer?serverTimezone=GMT%2B8";
-        String username = "root";
-        String password = "root19537";
-        Connection conn = null;
-        try{
-            conn = DriverManager.getConnection(url,username,password);
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
+        DBConn dbConn = new DBConn();
+        Connection conn = dbConn.getConn();
         if(conn!=null){
             String sql = "insert into agent(name,sex,tel,acount,password) values(?,?,?,?,?)";
             try{
@@ -53,34 +43,13 @@ public class UserLoginServlet extends HttpServlet {
                 conn.close();
                 if(row >0){
                     response.setContentType("text/html");
-                    response.setCharacterEncoding("UTF-8");
-                    PrintWriter out = response.getWriter();
-                    out.println("<html>");
-                    out.println("<head><title>注册结果</title></head>");
-                    out.println("<body>");
-                    out.println("<center>");
-                    out.println("<h3>注册成功</h3>");
-                    out.println("<a href=\"index.jsp\">返回登录界面</a>");
-                    out.println("</center>");
-                    out.println("</body>");
-                    out.println("</html>");
-                    out.flush();
-                    out.close();
+                    response.getWriter().write("注册成功！3秒后将自动跳转到登录页面，如果没有，请手动！");
+                    response.setHeader("refresh","3;url=index.jsp");
+
                 }else{
                     response.setContentType("text/html");
-                    response.setCharacterEncoding("UTF-8");
-                    PrintWriter out = response.getWriter();
-                    out.println("<html>");
-                    out.println("<head><title>注册结果</title></head>");
-                    out.println("<body>");
-                    out.println("<center>");
-                    out.println("<h3>注册失败</h3>");
-                    out.println("<a href=\"UserLogin.jsp\">返回注册界面</a>");
-                    out.println("</center>");
-                    out.println("</body>");
-                    out.println("</html>");
-                    out.flush();
-                    out.close();
+                    response.getWriter().write("注册成功！3秒后将自动跳转到注册页面，如果没有，请手动！");
+                    response.setHeader("refresh","3;url=UserLogin.jsp");
                 }
 
             }catch (SQLException e){

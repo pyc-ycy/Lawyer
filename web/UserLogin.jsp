@@ -18,6 +18,13 @@
             margin-left:-50px;/*div宽度的一半*/
             left:50%;
         }
+        body{
+            background-image: url("images/background.png");
+            background-origin: content-box;
+            background-position: 50% 50%;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
     </style>
     <script language="JavaScript">
         function checkPWD(pwd1,pwd2) {
